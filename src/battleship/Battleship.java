@@ -25,6 +25,7 @@ public class Battleship {
         myGame.displayHelp();
         
        // TODO code application logic here
+       //Emily Lowder connecting NetBeans to Git.
     }
     
 }
