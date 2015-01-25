@@ -21,7 +21,7 @@ public class Board {
     
     public void main() {
         int Board[] = new int [100];
-   
+            Board[location] = HitOrMiss(location);
     }
     
     public void HitOrMiss(location) {
