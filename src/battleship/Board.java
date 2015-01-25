@@ -7,7 +7,8 @@ package battleship;
 
 /**
  *
- * @author Debbi
+ * @authors Debbi
+ * Aaron Taylor
  */
 public class Board {
     
