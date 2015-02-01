@@ -17,7 +17,7 @@ public class Board {
     public static int Miss = 2;
     public static int Ship = 3;
   public int location;
-    
+
     
     public void main() {
         int Board[] = new int [100];
@@ -34,7 +34,24 @@ public class Board {
         }
     }
        
-       
+    public void ScoreCalc() {
+        for (i = 0; i < Board.length; i++) {
+            if (board[i] > 0) {
+                if (board = 1) {
+                    score += 5
+                    }
+                if (board = 2) {
+                    score -= 0.5
+                    }
+                if (board = 3) {
+                    score -= 5
+                    }
+                }
+            }
+            
+       public int score; 
+       public int scoreDisplay = "Your score is" + score + "points! The Computer says \" Boo, Hiss!\" "
+    }
      
     
 }
