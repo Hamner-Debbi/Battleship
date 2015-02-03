@@ -11,20 +11,17 @@ import java.util.Scanner;
  *
  * @author Emily
  */
-public class Player {
-    
+public class Player {   
     String name1;
     String name2;
-    String welcome = "Welcome to Battleship! You will be playing against \n"
-            +"the computer. Get ready, and good luck!";
+    String welcome = "The goal is to sink all of the computer ships by \n"
+            +"by correctly guessing their location. \n\n"
+            +"Place your ships vertically or horizontally on the grid.Ships can \n"
+            +"touch each other but may not overlap.\n\n"
+            +"Take turns with the computer firing a shot to attack enemy ships.\n"
+            +"On your turn call out a letter and a number of a row and \n"
+            +"column on the grid. The first player to sink all opposing ships wins.";
     
-    
-    public static void main(String[] args) {
-        Battleship myGame = new Battleship();
-        myGame.getName1();
-        myGame.getName2();
-        // TODO code application logic here
-    }
     
     public void getName1()   {
         Scanner input = new Scanner(System.in);
