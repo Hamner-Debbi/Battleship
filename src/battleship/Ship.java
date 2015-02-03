@@ -7,8 +7,8 @@ package battleship;
 
 /**
  *
- * @author Debbi
+ * @author Jeff
  */
 public class Ship {
-    
+    //Checking in. Hello!
 }
