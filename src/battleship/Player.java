@@ -11,20 +11,10 @@ import java.util.Scanner;
  *
  * @author Emily
  */
-public class Player {
-    
+public class Player {   
     String name1;
-    String name2;
-    String welcome = "Welcome to Battleship! You will be playing against \n"
-            +"the computer. Get ready, and good luck!";
+    String welcome = "Let's play Battleship!";
     
-    
-    public static void main(String[] args) {
-        Battleship myGame = new Battleship();
-        myGame.getName1();
-        myGame.getName2();
-        // TODO code application logic here
-    }
     
     public void getName1()   {
         Scanner input = new Scanner(System.in);
@@ -33,15 +23,8 @@ public class Player {
             
         }
     
-    public void getName2()  {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter Computer name");
-        this.name2 = input.next();
-        
-    }
-    
         public void displayHelp()   {
-        System.out.println("Hello " + this.name1 + "\n");
+        System.out.println("Hello " + this.name1);
         System.out.println(this.welcome);
     }
     
