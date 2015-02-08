@@ -46,3 +46,7 @@ public class Player {
     }
     
 }
+
+Public void getName1() {
+        if getName1 && getName2
+}
