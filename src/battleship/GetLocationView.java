@@ -37,7 +37,7 @@ public class GetLocationView {
         while (!valid) {
             // prompt for the row and column numbers
             System.out.println("\n\n\t" + this.game.currentPlayer.name + " it is your turn."
-                + "Enter a number for the column and the row  (For example: 1 1)");
+                + "Enter a number for the column and row  (For example: 1 1)");
             
             // get the value entered by the user 
             String strRowColumn = inFile.nextLine(); 
@@ -53,7 +53,7 @@ public class GetLocationView {
 
             if (coordinates.length < 1) { // the value entered was not blank?
                 new BattleshipError().displayError(
-                        "You must enter a number for the column and the row, "
+                        "You must enter a number for the column and row, "
                         + "or a \"Q\" to quit. Try again.");
                 continue;
             }    
@@ -63,7 +63,7 @@ public class GetLocationView {
                     return null;
                 } else { // wrong number of values entered.
                     new BattleshipError().displayError(
-                        "You must enter a number for the column and the row, "
+                        "You must enter a number for the column and row, "
                         + "or a \"Q\" to quit. Try again.");
                     continue;
                 }
@@ -76,7 +76,7 @@ public class GetLocationView {
             if (!coordinates[0].matches(regExpressionPattern) ||
                 !coordinates[1].matches(regExpressionPattern)) {
                 new BattleshipError().displayError(
-                        "You must enter a number for the column and the row,"
+                        "You must enter a number for the column and row,"
                         + "or a \"Q\" to quit. Try again.");
                 continue;
             }
@@ -92,7 +92,7 @@ public class GetLocationView {
             if (row < 1   ||  row > board.rowCount ||
                 column < 1  ||  column > board.columnCount) {
                 new BattleshipError().displayError(
-                        "You must enter a number for the column and the row. Try again.");
+                        "You must enter a number for the column and row. Try again.");
                 continue;
             }
             
