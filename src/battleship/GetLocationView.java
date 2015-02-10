@@ -37,7 +37,7 @@ public class GetLocationView {
         while (!valid) {
             // prompt for the row and column numbers
             System.out.println("\n\n\t" + this.game.currentPlayer.name + " it is your turn."
-                + " Enter a  number for the column and the row  (For example: 1 1)");
+                + "Enter a number for the column and the row  (For example: 1 1)");
             
             // get the value entered by the user 
             String strRowColumn = inFile.nextLine(); 
