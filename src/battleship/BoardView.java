@@ -7,7 +7,7 @@ package battleship;
 
 /**
  *
- * @author emilylowder
+ * @author Emily
  */
 public class BoardView {
     
