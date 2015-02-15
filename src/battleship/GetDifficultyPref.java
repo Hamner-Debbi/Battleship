@@ -25,8 +25,8 @@ public class GetDifficultyPref {
     public int getInput() {
 
         Scanner inFile = new Scanner(System.in); // get input file      
-        String[] playerInput;
-        Point location = null;
+        String[] /*playerInput*/;
+        Point DifficultyPref = null;
         
         boolean valid = false;
         
