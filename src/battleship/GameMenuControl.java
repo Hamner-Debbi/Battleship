@@ -20,15 +20,15 @@ public class GameMenuControl {
     }
   
    public void takeTurn() {
-        System.out.println("\n\ttakeTurn() called");
+        System.out.println("\n\ttakeTurn()called");
     }
           
    public void displayBoard() {
-        System.out.println("\n\tdisplayBoard() called");
+        System.out.println("\n\tdisplayBoard()called");
     }
    
     public void startNewGame() {
-        System.out.println("\n\tstartNewGame() called");
+        System.out.println("\n\tstartNewGame()called");
     }     
             
     public void displayPreferencesMenu() {
@@ -37,8 +37,8 @@ public class GameMenuControl {
     }
     
     public void displayStatistics() {
-        String NamedPlayerStatistics = this.game.playerA.getPlayerStastics();
-        String ComputerStatistics = this.game.playerB.getPlayerStastics();
+        String NamedPlayerStatistics = this.game.NamedPlayer.getNamedPlayerStastics();
+        String ComputerStatistics = this.game.Computer.getComputerStastics();
         System.out.println("\t " + NamedPlayerStatistics);
         System.out.println("\n\t " + ComputerStatistics);
     }
@@ -46,5 +46,10 @@ public class GameMenuControl {
     public void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.getInput();
+    }
+
+    private static class Game {
+        private Board board;
+       
     }
 }
