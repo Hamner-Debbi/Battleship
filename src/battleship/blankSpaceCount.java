@@ -7,7 +7,7 @@ package battleship;
 
 /**
  *
- * @author Aaron Taylor
+ * @author Aaron  Taylor
  */
 public class blankSpaceCount {
     
