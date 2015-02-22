@@ -52,4 +52,35 @@ public class GameMenuControl {
         private Board board;
        
     }
+    
+    //Sorting Algorythm
+   public class Sort{
+ 
+  private static final Random generator = new Random();  
+ 
+  public static void sort(int[] array)  {  
+    while (!isSorted(array)) {  
+      for (int i = 0; i < array.length; i++){  
+        int randomPosition = generator.nextInt(array.length);  
+        int temp = array[i];  
+        array[i] = array[randomPosition];  
+        array[randomPosition] = temp;  
+      }  
+    }  
+  }  
+ 
+ //Array
+  public static void main(String[] args) {
+    int [] array = {5,3,0,2,4,1,0,5,2,3,1,4}; 
+    System.out.println("Before: " + Arrays.toString(array));
+    sort(array);
+    System.out.println("After:  " + Arrays.toString(array));
+  }
+}
+ 
+ 
+    
+    
+    
+    
 }
