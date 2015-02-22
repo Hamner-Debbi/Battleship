@@ -30,6 +30,13 @@ public class Player {
     
 }
 
-Public void getName1() {
-        if getName1 && getName2
+class ForEach {
+    public static void main (String args[]){
+    int nums[] = {1, 2,};
+    int sum = 0;
+    
+    for (int x : nums) {
+      System.out.println("There will be " + x + "players");
+    }
+}
 }
