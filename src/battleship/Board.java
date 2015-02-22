@@ -25,10 +25,10 @@ public class Board {
     }
     
     public void HitOrMiss(location) {
-        if (location = 3) {
-            location = 1};
-        if (location = 0) {
-            location = 2);
+        if (location == 3) {
+            location == 1};
+        if (location == 0) {
+            location == 2);
         }
         
         }

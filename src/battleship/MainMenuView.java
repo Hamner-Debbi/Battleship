@@ -48,7 +48,7 @@ public class MainMenuView {
                     case "Q":
                         break;
                     default:
-                        new BattleshipError().displayError("Invalid command. Please enter a valid command.")
+                        new BattleshipError().displayError("Invalid command. Please enter a valid command.");
                     continue;
                 }
         }while (!command.equals("Q"));
