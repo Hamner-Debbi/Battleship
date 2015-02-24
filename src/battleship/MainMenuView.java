@@ -5,6 +5,7 @@
  */
 package battleship;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -21,7 +22,7 @@ public class MainMenuView {
         {"Q", "Quit"},
     };
     
-    private HelpMenuView helpMenuView = new helpMenuView();
+    private HelpMenuView HelpMenuView = new HelpMenuView();
     private Player player = new Player();
     private Battleship battleship = new Battleship();
     
@@ -54,5 +55,9 @@ public class MainMenuView {
         }while (!command.equals("Q"));
         return;
                 }
+
+    private Scanner newScanner(InputStream in) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         }
     
