@@ -10,6 +10,7 @@ package battleship;
 /**
  *
  * @author King Aaron, Lord of Pancakes and stuff
+ * Edited by Emily for Individual programming assignment.
  */
 public class GetPlayerScores {
     
