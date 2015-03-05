@@ -16,7 +16,8 @@ public class Board {
     public static int Hit = 1;
     public static int Miss = 2;
     public static int Ship = 3;
-  public int location;
+  
+    public int location;
 
     
     public void main() {
@@ -33,7 +34,7 @@ public class Board {
         
         }
     }
-       
+   public class score {     
     public void ScoreCalc() {
         for (i = 0; i < Board.length; i++) {
             if (board[i] > 0) {
@@ -48,10 +49,30 @@ public class Board {
                     }
                 }
             }
-            
+        }
+    }
+    
        public int score; 
        public int scoreDisplay = "Your score is" + score + "points! The Computer says \" Boo, Hiss!\" "
     }
      
     
+}
+public class blankSpaceCount {
+    
+    public static void ExchangeSort ( int [ ] num )
+{
+  int[] computerBoard = new int[99];
+  int blankSpaceCount = 0;
+  
+  int i;
+  for ( i = 0; i < computerBoard.length; i ++ )  
+  {
+  if (computerBoard[i] == 0) {
+      blankSpaceCount += 1;
+  }
+  }
+  
+  System.out.println (blankSpaceCount);
+}
 }

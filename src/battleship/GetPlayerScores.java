@@ -2,6 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+* we may not need to use this but did not remove it 
+*in case we need to use the sort function
  */
 package battleship;
 

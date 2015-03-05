@@ -53,11 +53,11 @@ public class GameMenuControl {
        
     }
 }
-public class Sort{
+private class Sort{
  
   private static final Random generator = new Random();  
  
-  public static void sort(int[] array)  {  
+  private static void sort(int[] array)  {  
     while (!isSorted(array)) {  
       for (int i = 0; i < array.length; i++){  
         int randomPosition = generator.nextInt(array.length);  
