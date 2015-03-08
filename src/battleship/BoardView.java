@@ -8,6 +8,7 @@ package battleship;
 /**
  *
  * @author Emily
+ * Edited by Debbi
  */
 public class BoardView {
     
