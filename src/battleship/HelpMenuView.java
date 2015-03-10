@@ -10,8 +10,16 @@ import java.util.Scanner;
 /**
  *
  * @author emilylowder
+ * Aaron Taylor - Paired Programming 09
  */
-public class HelpMenuView {
+public class HelpMenuView extends Menu {
+    
+    public static final String BOARD = "BOARD";
+    public static final String GAME = "GAME";
+    public static final String NAMED_PLAYER = "NAMED_PLAYER";
+    public static final String COMPUTER_PLAYER = "COMPUTER_PLAYER";
+    public static final String LOCATION = "LOCATION";
+    public static final String SHIPS = "SHIPS";
     
     private final static String[][] menuItems = {
         {"B", "The board"},
@@ -22,67 +30,94 @@ public class HelpMenuView {
         {"P", "Named player"},        
         {"Q", "Quit Help"}        
     };
-    
-    // Create instance of the HelpMenuControl (action) class
-    private HelpMenuControl helpMenuControl = new HelpMenuControl();
-    
-    // default constructor
-    public HelpMenuView() {
         
+    
+    public HelpMenuView() {
+        super(HelpMenuView.menuItems);
     } 
     
-    // display the help menu and get the end users input selection
-    public void getInput() {       
-              
-        String command;
-        Scanner inFile = new Scanner(System.in);
+     @Override
+    public String executeCommands(Object object) {       
         
+        String gameStatus = Game.PLAYING;
         do {
-            
-            this.display(); // display the menu
-            
+            this.display();
             // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            
+            String command = this.getCommand();
             switch (command) {
                 case "B":
-                    this.helpMenuControl.displayBoardHelp();
+                    this.displayHelp(HelpMenuView.BOARD);
                     break;
                 case "C":
-                    this.helpMenuControl.displayComputerPlayerHelp();
+                    this.displayHelp(HelpMenuView.COMPUTER_PLAYER);
                     break;
                 case "G":
-                    this.helpMenuControl.displayGameHelp();
+                    this.displayHelp(HelpMenuView.GAME);
                     break;                  
                 case "L":
-                    this.helpMenuControl.displayLocationHelp();
+                    this.displayHelp(HelpMenuView.LOCATION);
                     break;
                 case "S":
-                    this.helpMenuControl.displayShipHelp();
+                    this.displayHelp(HelpMenuView.SHIPS);
                     break;
                  case "P":
-                    this.helpMenuControl.displayNamedPlayerHelp();
+                    this.displayHelp(HelpMenuView.NAMED_PLAYER);
                     break; 
                 case "Q": 
-                    break;
-                default: 
-                    new BattleshipError().displayError("Invalid command. Please enter a valid command.");
-                    continue;
+                    return Game.QUIT;
             }
-        } while (!command.equals("Q"));  
+        } while (!gameStatus.equals(Game.QUIT));  
         
-         return;
+         return gameStatus;
     }
+    
+    private void displayHelp(String helpType) {
 
-        // displays the help menu
-    public final void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
-
-        for (int i = 0; i < HelpMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
+        String helpText = null;
+        switch (helpType) {
+            case HelpMenuView.BOARD: helpText = 
+                "\tBattleship is played on a 10x10 space board.\n"
+                +"The player's five ships are placed on their board.\n"
+                +"The computer has another board for their five ships." ;
+                break;
+                
+            case HelpMenuView.GAME: helpText = 
+                "\tThe object of the game is to guess the location of your opponent's five ships\n" +
+                "which are hidden on your opponent's board. Players take turns marking a space\n" +
+                "on their opponent's board, attempting to mark a square containing enemy ships. \n" +
+                "Once all positions of a ship is hit it is destroyed (sunk). \n" +
+                "When you have sunk all of your opponent's battleships then you win the game.";
+                break; 
+                
+            case HelpMenuView.NAMED_PLAYER: helpText = 
+                "\tA named player manually takes their turn by placing their mark "
+                + "\nin an unused location on the board.";
+                break;
+                
+            case HelpMenuView.COMPUTER_PLAYER: helpText = 
+                "\tThe computer player automatically takes its turn "
+                + "\n after the human player in a single player game.";
+                break;
+                
+            case HelpMenuView.LOCATION: helpText = 
+               "\tA location on the board, denoted by row and column, where a player can place their marker.";
+                break;
+                
+            case HelpMenuView.SHIPS: helpText = 
+                "\tPlayers are able to place their ships vertically or horizontally on the grid. Ships can \n"
+            +"touch each other but may not overlap. Both you and the computer have\n"
+                +"five ships each. The game begins once your ships are placed.";    
+                break;
+        }   
+        
+        StringBuilder dividerLine = new StringBuilder(80);
+        for (int i = 0; i < 80; i++) {
+            dividerLine.insert(i, '~');
         }
-        System.out.println("\t===============================================================\n");
+        
+        System.out.println("\t" + dividerLine.toString());
+        System.out.println(helpText);
+        System.out.println("\t" + dividerLine.toString());
     }
+    
 }
