@@ -12,52 +12,86 @@ import java.util.Scanner;
 /**
  *
  * @author emilylowder
+ * Aaron Taylor - Paired Programming Assignment 09
  */
-public class MainMenuView {
-
-    private final static String [] [] menus = {
-        {"I", "Input name"},
-        {"S", "Start game"},
-        {"H", "Access help menu"},
-        {"Q", "Quit"},
-    };
+public class MainMenuView extends Menu {
     
-    private HelpMenuView HelpMenuView = new HelpMenuView();
-    private Player player = new Player();
-    private Battleship battleship = new Battleship();
+    private static final String[][] menuItems = {
+        {"1", "One player game"},
+        {"2", "Two player game"},
+        {"H", "Help"},
+        {"Q", "Quit Battleship"}
+    }; 
+  
+    MainMenuControl mainCommands = new MainMenuControl();
     
-    public void getInput() {
-        String command;
-        Scanner inFile = newScanner(System.in);
-        
-        do{
-            this.display(); //display menu
-            
-            //get command entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            
-                switch(command) {
-                    case "I":
-                        this.player.displayPlayer();
-                        break;
-                    case "S":
-                        this.battleship.displayBattleship();
-                        break;
-                    case "H":
-                        this.helpMenuView.displayHelpMenuView();
-                    case "Q":
-                        break;
-                    default:
-                        new BattleshipError().displayError("Invalid command. Please enter a valid command.");
-                    continue;
-                }
-        }while (!command.equals("Q"));
-        return;
-                }
-
-    private Scanner newScanner(InputStream in) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MainMenuView() {
+        super(MainMenuView.menuItems);
     }
+    
+    @Override
+    public String executeCommands(Object object) {       
+        
+        String gameStatus = Game.PLAYING;
+        do {
+            this.display();
+
+            // get commaned entered
+            String command = this.getCommand();
+            switch (command) {
+                case "1":
+                    this.startGame(1);
+                    break;
+                case "2":
+                    this.startGame(2);
+                    break;
+                case "H":
+                    HelpMenuView helpMenu = Battleship.getHelpMenu();
+                    helpMenu.executeCommands(null);
+                    break;
+                case "Q":
+                    return Game.EXIT;
+            }
+        } while (!gameStatus.equals(Game.EXIT));
+
+        return Game.EXIT;
+    }
+
+    private void startGame(long noPlayers) {
+                
+        if (noPlayers != 1  &&  noPlayers != 2) {
+            new Battleship().displayError("startGame - invalid number of players specified.");
+            return;
         }
+        
+        Game game;
+        if (noPlayers == 1) {
+            game = this.mainCommands.create(Game.ONE_PLAYER);
+        }
+        else {
+            game = this.mainCommands.create(Game.TWO_PLAYER);
+        }
+        
+        SelectPlayersView sekectPlayersView = new SelectPlayersView(game);
+        String status = (String) sekectPlayersView.selectPlayers(Battleship.getNameList());
+        if (status.equals(Game.QUIT)) {
+            return;
+        }
+
+        GameMenuView gameMenu = new GameMenuView(game);
+        gameMenu.executeCommands(game);
+    }
+
+    private String quitGame() {
+        System.out.println("\n\tAre you sure you want to quit? (Y or N)");
+        Scanner inFile = new Scanner(System.in);
+        String answer = inFile.next().trim().toUpperCase();
+        if (answer.equals("Y")) {
+            return Game.EXIT;
+        }
+
+        return Game.PLAYING;
+    }
+    
+}
     
