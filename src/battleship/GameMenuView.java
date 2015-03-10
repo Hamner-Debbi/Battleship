@@ -5,15 +5,18 @@
  */
 package battleship;
 
-import java.util.Scanner;
+import java.awt.Point;
 
 /**
  * @author Debbi
+ * Aaron Taylor - Paired Programming Assignment 09
  */
-public class GameMenuView {
+public class GameMenuView extends Menu {
     
     private Game game;
-    private GameMenuControl gameMenuControl ; 
+    private GameMenuControl gameCommands; 
+    private GetLocationView getLocation = new GetLocationView();
+    private BoardView displayBoard = new BoardView();
 
     private final static String[][] menuItems = {
         {"T", "Take your turn"},
@@ -22,63 +25,153 @@ public class GameMenuView {
         {"R", "Report stastics"},
         {"P", "Change game preferences"},
         {"H", "Help"},
-        {"Q", "QUIT"}
+        {"Q", "Quit"}
     };
 
     public GameMenuView(Game game) {
-        this.gameMenuControl = new GameMenuControl(game); 
+        super(GameMenuView.menuItems);
+        this.gameCommands = new GameMenuControl(game);
     }
 
-    public void getInput() {
-   
-        String command;
-        Scanner inFile = new Scanner(System.in);
+    public BoardView getDisplayBoard() {
+        return displayBoard;
+    }
 
-        do {    
-            this.display(); // display the menu
+    public void setDisplayBoard(BoardView displayBoard) {
+        this.displayBoard = displayBoard;
+    }
 
-            // get commaned entered
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
+    
+
+    @Override
+    public String executeCommands(Object object) {
+        this.game = (Game) object;
+
+        String gameStatus = Game.CONTINUE;
+        do {
+     
+            this.display();
             
+            // get commaned entered
+            String command = this.getCommand();
             switch (command) {
                 case "T":
-                    this.gameMenuControl.takeTurn();
+                    this.takeTurn();
                     break;
                 case "D":
-                    gameMenuControl.displayBoard();
+                    this.displayBoard.display(game.getBoard());
                     break;
                 case "N":
-                    gameMenuControl.startNewGame();
+                    gameCommands.startNewGame(game);
+                    this.displayBoard.display(game.getBoard());
                     break;
                 case "R":
-                    gameMenuControl.displayStatistics();
+                    this.displayStatistics();
                     break;
                 case "P":
-                    gameMenuControl.displayPreferencesMenu();
+                    GamePreferencesMenuView gamePreferencesMenu = TicTacToe.getGamePreferencesMenu();
+                    gamePreferencesMenu.display();
+                    gamePreferencesMenu.executeCommands(this.game);
                     break;
                 case "H":
-                    gameMenuControl.displayHelpMenu();
+                    HelpMenuView helpMenu = Battleship.getHelpMenu();
+                    helpMenu.executeCommands(null);
                     break;
-                case "Q":                   
+                case "Q":
+                    gameStatus = Game.QUIT;
                     break;
-                default: 
-                    new BattleshipError().displayError("Invalid command. Please enter a valid command.");
-                    continue;                              
             }
-        } while (!command.equals("Q"));
+        } while (!gameStatus.equals(Game.QUIT));
 
-        return;
+        return Game.PLAYING;
     }
     
-    public final void display() {
-        System.out.println("\tEnter the letter associated with one of the following commands:");
+    
+   private void takeTurn() {
+        String playersMarker;
+        Point selectedLocation;
 
-        for (int i = 0; i < GameMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
+        if (!this.game.getStatus().equals(Game.NEW_GAME) && 
+            !this.game.getStatus().equals(Game.PLAYING)) {
+            new Battleship().displayError(
+                    "There is no active game. You must start a new game before "
+                    + "you can take a turn");
+            return;
+        }
+        Player currentPlayer = this.game.getCurrentPlayer();
+        Player otherPlayer = this.game.getOtherPlayer();
+
+        // get location for first player
+        selectedLocation = (Point) getLocation.getLocation(this.game);
+        if (selectedLocation == null) {
+            return;
+        }
+
+        // regular players turn
+        Point locationMarkerPlaced = 
+                this.gameCommands.playerTakesTurn(currentPlayer, selectedLocation);
+
+        if (this.gameOver()) { // game won or tied?  
+            return;
+        }
+
+        if (this.game.getGameType() == Game.ONE_PLAYER) {
+            // computers turn
+            locationMarkerPlaced = this.gameCommands.playerTakesTurn(otherPlayer, null);
+
+            if (this.gameOver()) { // game won or tied?
+                return;
+            }
+        }
+
+
+        // display board and prompt for next player's turn
+        this.displayBoard.display(game.getBoard());
+        String promptNextPlayer = getNextPlayerMessage(otherPlayer);
+        System.out.println("\n\n\t" + promptNextPlayer);
+
+
+    }
+
+    private boolean gameOver() {
+        boolean done = false;
+        if (this.game.getStatus().equals(Game.TIE)) { // a tie?
+            System.out.println("\n\n\t" + this.game.getTiedMessage());
+            done = true;
+        } else if (this.game.getStatus().equals(Game.WINNER)) { // a win?
+            System.out.println("\n\n\t" + this.game.getWinningMessage());
+            done = true;
         }
         
-  
-}
-}
+        if (done) {
+            this.displayBoard.display(this.game.getBoard());
+        }
+        
 
+        return done;
+    }
+    
+        
+    private String getNextPlayerMessage(Player player) {
+        if (this.game.getGameType().equals(Game.ONE_PLAYER)) {
+            return "The computer took it's turn. It is now your turn. "
+                    + player.getName();
+        } else {
+            return "It is now your turn "
+                    + player.getName();
+        }
+    }
+    
+    
+    private void displayStatistics() {
+        String playerAStatistics = this.game.getPlayerA().getPlayerStastics();
+        String playerBStatistics = this.game.getPlayerB().getPlayerStastics();
+        System.out.println("\n\t++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("\t " + playerAStatistics);
+        System.out.println("\n\t " + playerBStatistics);
+        System.out.println("\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    }
+
+
+   
+}
