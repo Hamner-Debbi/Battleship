@@ -8,6 +8,7 @@ package battleship;
 /**
  *
  * @author emilylowder
+ * MAY BE ABLE TO DELETE THIS CLASS
  */
 public class HelpMenuControl {
     

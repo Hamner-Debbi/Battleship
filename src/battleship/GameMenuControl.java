@@ -8,6 +8,7 @@ package battleship;
 /**
  *
  * @author Debbi
+ * MAY BE ABLE TO DELETE THIS CLASS
  */
 public class GameMenuControl {
 
