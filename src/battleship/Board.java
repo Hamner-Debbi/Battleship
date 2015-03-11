@@ -9,7 +9,9 @@ package battleship;
  *
  * @authors Debbi
  * Aaron Taylor
+ * 
  * L08 Individual Assignment edits by Aaron Taylor 
+ * Review for L09 Individual Assignment by Aaron Taylor
  */
 public class Board {
     
