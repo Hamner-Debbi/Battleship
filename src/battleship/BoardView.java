@@ -8,7 +8,7 @@ package battleship;
 /**
  *
  * @author Emily
- * Edited by Debbi
+ * Edited by Debbi Hamner
  */
 public class BoardView {
     
@@ -46,6 +46,7 @@ public class BoardView {
         for (int i = 1; i < columnsInRow - 1; i++) {
             int col = i + 1;
             System.out.print("  " + col + "   ");
+            
         }
         // print the header for the last column in the header
         System.out.print(" " + columnsInRow + "   ");
@@ -71,6 +72,7 @@ public class BoardView {
         String letter = " ";
         if (rowLocations[0].player != null) {
             letter = rowLocations[0].player.marker;
+            
         }
         System.out.print("\n\t" + rowNumber + " |  " + letter + "  |");
 
