@@ -3,38 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.models.Player;
+import bitbyui.cit260.group2.battleship.models.Board;
+import bitbyui.cit260.group2.battleship.interfaces.DisplayInfo;
 /**
  *
  * @author Emily
  * Edited by Debbi Hamner
+ * Edited by Emily Lowder
  */
-public class BoardView {
-    
-    Board board;
-    
-    public void displayBoard(Board board) {
-        this.board = board;
+public class BoardView implements DisplayInfo {
+
+     Board board;
+        @Override
+    public Object display(Object object) {
+        this.board = (Board) object;
+        this.printHeadRow();
+        this.printDividerRow();
+        for (int i = 0; i < this.board.getRowCount(); i++) {
+            Player[] rowOfLocations = this.board.getBoardLocations()[i];
+            this.printRow(i+1, rowOfLocations);
+            this.printDividerRow();
+        }
+        System.out.println();
+         
+        return null;
+    }
+    //public void displayBoard(Board board) {
+       //this.board = board;
         
-        this.printHeadRow(); // print the header row for the board
-        this.printDividerRow(); // print the top divider row of the board
+       // this.printHeadRow(); // print the header row for the board
+        //this.printDividerRow(); // print the top divider row of the board
         
         // for all rows in the board
-        for (int i = 0; i < this.board.rowCount; i++) {
+       // for (int i = 0; i < this.board.rowCount; i++) {
             // get the list of list of columns locations in the row
-            Location[] rowOfLocations = this.board.boardLocations[i];
+            //Location[] rowOfLocations = this.board.boardLocations[i];
             
             // print the contents of each location in the row
-            this.printRow(i+1, rowOfLocations); 
+          //  this.printRow(i+1, rowOfLocations); 
             
-            this.printDividerRow();// print the ending divider for the row
-        }
+        //    this.printDividerRow();// print the ending divider for the row
+        //}
         
-        System.out.println(); // print blank line after the board
+       // System.out.println(); // print blank line after the board
          
-        return;
-    }
+       // return;
+    //}
 
     private void printHeadRow() {
 

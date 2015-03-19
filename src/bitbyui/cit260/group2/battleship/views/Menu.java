@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.controls.BattleshipError;
+import bitbyui.cit260.group2.battleship.controls.Battleship;
 import java.util.Scanner;
-
+import bitbyui.cit260.group2.battleship.controls.battleship;
+import bitbyui.cit260.group2.battleship.controls.battleship;
 /**
  *
  * @author emilylowder 
  * Paired Programming 09
- */
-public abstract class Menu {
+ * Paired programing L10 */
+public class Menu {
 
     private String[][] menuItems = null;
 
@@ -24,9 +27,6 @@ public abstract class Menu {
         this.menuItems = menuItems;
     }
     
-    // This is an abstract function. It specifies that all sub-classes must
-    // implement this function.
-    public abstract String executeCommands(Object object);
     
     public String[][] getMenuItems() {
         return menuItems;

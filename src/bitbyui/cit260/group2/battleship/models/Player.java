@@ -4,7 +4,7 @@
  * and open the template in the editor. We can possibly add this to a different
  *file to get the player name
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.models;
 
 import java.util.Scanner;
 

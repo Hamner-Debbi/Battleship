@@ -5,7 +5,7 @@
 * we may not need to use this but did not remove it 
 *in case we need to use the sort function
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
 /**
  *

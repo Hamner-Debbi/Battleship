@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.controls.Battleship;
+import bitbyui.cit260.group2.battleship.controls.GameMenuControl;
+import bitbyui.cit260.group2.battleship.models.Player;
 import java.awt.Point;
 
 /**
  * @author Debbi
  * Aaron Taylor - Paired Programming Assignment 09
+ * Aaron Taylor Individual Programming Assignment L10
  */
 public class GameMenuView extends Menu {
     
@@ -44,7 +48,7 @@ public class GameMenuView extends Menu {
     
 
     @Override
-    public String executeCommands(Object object) {
+    public Object getInput(Object object) {
         this.game = (Game) object;
 
         String gameStatus = Game.CONTINUE;
@@ -69,7 +73,7 @@ public class GameMenuView extends Menu {
                     this.displayStatistics();
                     break;
                 case "P":
-                    GamePreferencesMenuView gamePreferencesMenu = TicTacToe.getGamePreferencesMenu();
+                    GamePreferencesMenuView gamePreferencesMenu = battleship.getGamePreferencesMenu();
                     gamePreferencesMenu.display();
                     gamePreferencesMenu.executeCommands(this.game);
                     break;

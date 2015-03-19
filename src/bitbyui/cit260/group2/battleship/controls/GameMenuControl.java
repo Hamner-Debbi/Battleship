@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.controls;
+
+import bitbyui.cit260.group2.battleship.models.Board;
+import bitbyui.cit260.group2.battleship.views.HelpMenuView;
 
 /**
  *

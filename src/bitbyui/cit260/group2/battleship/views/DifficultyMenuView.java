@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.controls.BattleshipError;
+import bitbyui.cit260.group2.battleship.controls.DifficultyMenuControl;
 import java.util.Scanner;
 
 /**

@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.controls.Battleship;
+import bitbyui.cit260.group2.battleship.views.HelpMenuView;
+import bitbyui.cit260.group2.battleship.views.GameMenuView;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -13,8 +16,9 @@ import java.util.Scanner;
  *
  * @author emilylowder
  * Aaron Taylor - Paired Programming Assignment 09
+ * Emily Lowder - Individual Programming Assignment L10
  */
-public class MainMenuView extends Menu {
+public class MainMenuView extends Menu implements EnterInfo {
     
     private static final String[][] menuItems = {
         {"1", "One player game"},
@@ -29,10 +33,10 @@ public class MainMenuView extends Menu {
         super(MainMenuView.menuItems);
     }
     
-    @Override
-    public String executeCommands(Object object) {       
+   @Override
+    public String getInput(Object object) {         
         
-        String gameStatus = Game.PLAYING;
+        String gameStatus = "PLAYING";
         do {
             this.display();
 
@@ -52,7 +56,7 @@ public class MainMenuView extends Menu {
                 case "Q":
                     return Game.EXIT;
             }
-        } while (!gameStatus.equals(Game.EXIT));
+        } while (!gameStatus.equals("EXIT"));
 
         return Game.EXIT;
     }
@@ -73,13 +77,13 @@ public class MainMenuView extends Menu {
         }
         
         SelectPlayersView sekectPlayersView = new SelectPlayersView(game);
-        String status = (String) sekectPlayersView.selectPlayers(Battleship.getNameList());
+        String status = (String) selectPlayersView.selectPlayers(Battleship.getNameList());
         if (status.equals(Game.QUIT)) {
             return;
         }
 
         GameMenuView gameMenu = new GameMenuView(game);
-        gameMenu.executeCommands(game);
+        gameMenu.getInput(game);
     }
 
     private String quitGame() {
@@ -87,10 +91,10 @@ public class MainMenuView extends Menu {
         Scanner inFile = new Scanner(System.in);
         String answer = inFile.next().trim().toUpperCase();
         if (answer.equals("Y")) {
-            return Game.EXIT;
+            return "EXIT";
         }
 
-        return Game.PLAYING;
+        return "PLAYING";
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
 import java.util.Scanner; 
 
@@ -11,23 +11,24 @@ import java.util.Scanner;
  *
  * @author emilylowder
  * Aaron Taylor - Paired Programming 09
+ * Debbi Hamner individual Programming Assignment
  */
-public class HelpMenuView extends Menu {
+public class HelpMenuView extends Menu  implements EnterInfo {
     
     public static final String BOARD = "BOARD";
     public static final String GAME = "GAME";
-    public static final String NAMED_PLAYER = "NAMED_PLAYER";
-    public static final String COMPUTER_PLAYER = "COMPUTER_PLAYER";
+    public static final String PLAYER_A = "PLAYER_A";
+    public static final String PLAYER_B = "PALYER_B";
     public static final String LOCATION = "LOCATION";
     public static final String SHIPS = "SHIPS";
     
     private final static String[][] menuItems = {
         {"B", "The board"},
-        {"C", "Computer player"}, 
+        {"A", "PLAYER_A"}, 
         {"G", "The Battleship game"},
         {"L", "A location"},
         {"S", "Ships"},
-        {"P", "Named player"},        
+        {"B", "PLAYER_B"},        
         {"Q", "Quit Help"}        
     };
         
@@ -37,7 +38,8 @@ public class HelpMenuView extends Menu {
     } 
     
      @Override
-    public String executeCommands(Object object) {       
+    public String getInput(Object object) {       
+           
         
         String gameStatus = Game.PLAYING;
         do {
@@ -48,8 +50,8 @@ public class HelpMenuView extends Menu {
                 case "B":
                     this.displayHelp(HelpMenuView.BOARD);
                     break;
-                case "C":
-                    this.displayHelp(HelpMenuView.COMPUTER_PLAYER);
+                case "A":
+                    this.displayHelp(HelpMenuView.PLAYER_A);
                     break;
                 case "G":
                     this.displayHelp(HelpMenuView.GAME);
@@ -60,8 +62,8 @@ public class HelpMenuView extends Menu {
                 case "S":
                     this.displayHelp(HelpMenuView.SHIPS);
                     break;
-                 case "P":
-                    this.displayHelp(HelpMenuView.NAMED_PLAYER);
+                 case "B":
+                    this.displayHelp(HelpMenuView.PLAYER_B);
                     break; 
                 case "Q": 
                     return Game.QUIT;
@@ -89,12 +91,12 @@ public class HelpMenuView extends Menu {
                 "When you have sunk all of your opponent's battleships then you win the game.";
                 break; 
                 
-            case HelpMenuView.NAMED_PLAYER: helpText = 
+            case HelpMenuView.PLAYER_A: helpText = 
                 "\tA named player manually takes their turn by placing their mark "
                 + "\nin an unused location on the board.";
                 break;
                 
-            case HelpMenuView.COMPUTER_PLAYER: helpText = 
+            case HelpMenuView.PLAYER_B: helpText = 
                 "\tThe computer player automatically takes its turn "
                 + "\n after the human player in a single player game.";
                 break;

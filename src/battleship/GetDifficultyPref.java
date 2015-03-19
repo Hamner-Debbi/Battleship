@@ -5,6 +5,7 @@
  */
 package battleship;
 
+import bitbyui.cit260.group2.battleship.controls.BattleshipError;
 import java.awt.Point;
 import java.util.Scanner;
 

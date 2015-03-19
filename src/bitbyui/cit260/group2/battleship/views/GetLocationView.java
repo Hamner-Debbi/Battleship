@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package bitbyui.cit260.group2.battleship.views;
 
+import bitbyui.cit260.group2.battleship.controls.BattleshipError;
+import bitbyui.cit260.group2.battleship.models.Board;
 import java.awt.Point;
 import java.util.Scanner;
 
 /**
  *
  * @author Debbi
+ * Jeff Olsen Individual Programming Assignment L10
  */
-public class GetLocationView {
+public class GetLocationView implements EnterInfo {
   private Game game;
     
     public GetLocationView(Game game) {
@@ -26,7 +29,10 @@ public class GetLocationView {
      */
     public Point getInput() {
 
-        Scanner inFile = new Scanner(System.in); // get input file      
+       @Override
+    public Object getInput(Object object) {
+        this.game = (Game) object;
+        Scanner inFile = Battleship.getInputFile(); // get input file    
         String[] coordinates;
         Point location = null;
         
