@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author emilylowder
  * Aaron Taylor - Paired Programming 09
- * Debbi Hamner individual Programming Assignment
+ * Debbi Hamner individual Programming Assignment L10
  */
 public class HelpMenuView extends Menu  implements EnterInfo {
     
