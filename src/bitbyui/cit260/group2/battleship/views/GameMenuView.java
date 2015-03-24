@@ -14,6 +14,7 @@ import java.awt.Point;
  * @author Debbi
  * Aaron Taylor - Paired Programming Assignment 09
  * Aaron Taylor Individual Programming Assignment L10
+ * Paired Programming Assignment L11 line 94-139
  */
 public class GameMenuView extends Menu {
     
@@ -91,17 +92,52 @@ public class GameMenuView extends Menu {
     }
     
     
-   private void takeTurn() {
+   private void takeTurn() throws GameException,BattleshipException {
         String playersMarker;
         Point selectedLocation;
 
-        if (!this.game.getStatus().equals(Game.NEW_GAME) && 
-            !this.game.getStatus().equals(Game.PLAYING)) {
-            new Battleship().displayError(
-                    "There is no active game. You must start a new game before "
-                    + "you can take a turn");
-            return;
+        if (!this.game.getStatus() != StatusType.NEW_GAME &&
+            this.game.getStatus() !=  StatusType.PLAYING)
+            throw new MenuException(ErrorType.ERROR206.getMessage());
+            return;    
+            
+            //.equals(Game.NEW_GAME) && 
+            //!this.game.getStatus().equals(Game.PLAYING)) {
+            //new Battleship().displayError(
+            
         }
+        //This is our throwing and catching exception section.  
+        //It may be a trow away code.
+   
+        try{
+            do{
+                try{
+                    valid = game.getStatus().occupyLocation(this, coordinates);
+                }catch (MenuException be){
+                    Error.displayErrorMsg(be.getMessage());
+                }
+             }
+         } while (!valid);
+         
+         //end of throwing catching code
+         //begining of graceful exception
+         
+         try{
+            Battleship battleship = new Battleship();
+            MainMenu MainMenu = new ManiMenu();
+            
+            battleship.display();
+            mainMenu.getInput(null);
+}
+         catch (Throwable ex) {
+         Error.displayErrorMsg("Unexpected error: " + ex.getMessage());
+         Error.displayErrorMsg(ex.getStackTrace().toString());
+}
+         finally{
+            Battleship.infile.close()
+            );
+            //end graceful exceptions
+   
         Player currentPlayer = this.game.getCurrentPlayer();
         Player otherPlayer = this.game.getOtherPlayer();
 
