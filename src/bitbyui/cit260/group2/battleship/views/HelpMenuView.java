@@ -111,7 +111,39 @@ public class HelpMenuView extends Menu  implements EnterInfo {
                 +"five ships each. The game begins once your ships are placed.";    
                 break;
         }   
-        
+        //throw catch finally
+
+        //This is our throwing and catching exception section.  
+        //It may be a trow away code.
+   
+        try{
+            do{
+                try{
+                    valid = game.getStatus().occupyLocation(this, coordinates);
+                }catch (MenuException be){
+                    Error.displayErrorMsg(be.getMessage());
+                }
+             }
+         } while (!valid);
+
+         
+         try{
+            Battleship battleship = new Battleship();
+            MainMenu MainMenu = new ManiMenu();
+            
+            battleship.display();
+            mainMenu.getInput(null);
+}
+         catch (Throwable ex) {
+         Error.displayErrorMsg("Unexpected error: " + ex.getMessage());
+         Error.displayErrorMsg(ex.getStackTrace().toString());
+}
+         finally{
+            Battleship.infile.close()
+            );
+  
+        }
+        //end
         StringBuilder dividerLine = new StringBuilder(80);
         for (int i = 0; i < 80; i++) {
             dividerLine.insert(i, '~');
