@@ -10,8 +10,9 @@ package bitbyui.cit260.group2.battleship.models;
  * @authors Debbi
  * Aaron Taylor
  * 
- * L08 Individual Assignment edits by Aaron Taylor 
- * Review for L09 Individual Assignment by Aaron Taylor 
+ * L08 Individual Assignment - Aaron Taylor 
+ * L09 Individual Assignment - Aaron Taylor 
+ * L11 Individual Assignment - Aaron Taylor
  */
 public class Board {
     
