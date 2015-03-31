@@ -8,6 +8,7 @@ package bitbyui.cit260.group2.battleship.controls;
 /**
  *
  * @author Debbi
+ * L12 Assignment
  */
 public class Battleship {
         String name;
@@ -20,12 +21,31 @@ public class Battleship {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Battleship myGame = new Battleship();
-        myGame.getName();
-        myGame.displayHelp();
-        
-       // TODO code application logic here
+    Battleship battleship = null;
+        try {  
+            battleship = new Battleship();
+            
+              /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    Battleship.MainFrame = new MainFrame();
+                    Battleship.MainFrame.setVisible(true);
+                }
+            });
+        } 
 
+        catch (Throwable ex) {     
+            ErrorType.displayErorrMsg("Unexpected error: " + ex.getMessage());
+            ErrorType.displayErorrMsg(ex.getStackTrace().toString());           
+        } 
+        finally {
+            if (Battleship.MainFrame != null) {
+                Battleship.MainFrame.dispose();
+            }
+        }
+        
+      
     }
+
     
 }
