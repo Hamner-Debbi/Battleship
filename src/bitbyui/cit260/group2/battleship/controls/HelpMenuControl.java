@@ -41,7 +41,7 @@ public class HelpMenuControl {
         displayHelpBorder();
     }
             
-    public void displayNamedPlayerHelp() {
+    public void displayPlayerAHelp() {
         System.out.println();
         displayHelpBorder();     
         System.out.println( 
@@ -52,7 +52,7 @@ public class HelpMenuControl {
     }
     
                    
-    public void displayComputerPlayerHelp() {
+    public void displayPlayerBHelp() {
         System.out.println();
         displayHelpBorder();     
         System.out.println( 
